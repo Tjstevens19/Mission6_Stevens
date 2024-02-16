@@ -23,5 +23,9 @@ namespace Mission6_Stevens.Controllers
             return View();
         }
 
+        public IActionResult AddMovie()
+        {
+            return View();
+        }
     }
 }
