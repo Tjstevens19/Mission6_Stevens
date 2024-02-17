@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mission6_Stevens.Models;
 
@@ -10,9 +11,11 @@ using Mission6_Stevens.Models;
 namespace Mission6_Stevens.Migrations
 {
     [DbContext(typeof(AddMovieModelContext))]
-    partial class AddMovieModelContextModelSnapshot : ModelSnapshot
+    [Migration("20240217005902_TakeFour")]
+    partial class TakeFour
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.2");
