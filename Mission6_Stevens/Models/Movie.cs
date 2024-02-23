@@ -13,7 +13,7 @@ namespace Mission6_Stevens.Models
         [ForeignKey("CategoryId")]
         public int? CategoryId { get; set; }
         public Category? Category { get; set; }
-        [Required(ErrorMessage = "Please enter a Movie Title")]
+        [Required(ErrorMessage = "Please enter a movie Title")]
         public string Title { get; set; }
         [Required(ErrorMessage = "Please enter a Year")]
         [Range(1888, int.MaxValue, ErrorMessage = "The Release Year must be 1888 or greater (no movies existed before 1888).")]

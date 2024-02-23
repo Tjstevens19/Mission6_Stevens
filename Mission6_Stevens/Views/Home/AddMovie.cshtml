@@ -22,13 +22,17 @@
 
     <div>
         <label asp-for="Title">Title</label>
-        <input asp-for="Title" >
+        <input asp-for="Title">
+        <span asp-validation-for="Title" class="text-danger"></span>
     </div>
+
 
     <div>
         <label asp-for="Year">Release Year</label>
-        <input asp-for="Year" type="number" >
+        <input asp-for="Year" type="number" min="1888">
+        <span asp-validation-for="Year" class="text-danger"></span>
     </div>
+
 
     <div>
         <label asp-for="Director">Director(s)</label>
