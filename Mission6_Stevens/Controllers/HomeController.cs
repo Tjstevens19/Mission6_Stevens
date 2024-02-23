@@ -23,7 +23,7 @@ namespace Mission6_Stevens.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult AddMovie()
+        public IActionResult AddMovie() // Display the form
         {
             ViewBag.Categories = _context.Categories
                 .OrderBy(x => x.CategoryName)
@@ -32,7 +32,7 @@ namespace Mission6_Stevens.Controllers
             return View("AddMovie", new Movie());
         }
         [HttpPost]
-        public IActionResult AddMovie(Movie response)
+        public IActionResult AddMovie(Movie response) // Process the form
         {
             if (ModelState.IsValid)
             {
@@ -50,7 +50,7 @@ namespace Mission6_Stevens.Controllers
 
         }
         [HttpGet]
-        public IActionResult ViewMovies()
+        public IActionResult ViewMovies() // Display the list of movies
         {
             //Linq Query
             var movies = _context.Movies
@@ -60,47 +60,41 @@ namespace Mission6_Stevens.Controllers
             return View(movies);
 
         }
-        //[HttpGet]
-        //public IActionResult Edit(int id)
-        //{
-        //    var recordToEdit = _context.Movies
-        //        .Single(x => x.MovieId == id);
 
-        //    ViewBag.Categories = _context.Categories
-        //        .OrderBy(x => x.CategoryName)
-        //        .ToList();
-        //    return View("DatingApplication", recordToEdit);
-        //}
-        //[HttpPost]
-        //public IActionResult Edit(AddMovieModel response)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _context.Movies.Update(response);
-        //        _context.SaveChanges();
-        //        return View("Confirmation", response);
-        //    }
-        //    else
-        //    {
-        //        ViewBag.Categories = _context.Categories
-        //            .OrderBy(x => x.CategoryName)
-        //            .ToList();
-        //        return View("DatingApplication", response);
-        //    }
-        //}
-        //[HttpGet]
-        //public IActionResult Delete(int id)
-        //{
-        //    var recordToDelete = _context.Movies
-        //        .Single(x => x.MovieId == id);
-        //    return View(recordToDelete);
-        //}
-        //[HttpPost]
-        //public IActionResult Delete(AddMovieModel response)
-        //{
-        //    _context.Movies.Remove(response);
-        //    _context.SaveChanges();
-        //    return RedirectToAction("ViewMovies");
+        [HttpGet]
+        public IActionResult Edit(int id) // Display the edit form
+        {
+            var recordToEdit = _context.Movies
+                .Single(x => x.MovieId == id);
 
+            ViewBag.Categories = _context.Categories
+                .OrderBy(x => x.CategoryName)
+                .ToList();
+            return View("AddMovie", recordToEdit);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Movie updatedInfo) // Process the edit form
+        {
+            _context.Movies.Update(updatedInfo);
+            _context.SaveChanges();
+            return RedirectToAction("ViewMovies");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id) // Display the deletion form
+        {
+            var recordToDelete = _context.Movies
+                .Single(x => x.MovieId == id);
+            return View(recordToDelete);
+        }
+        [HttpPost]
+        public IActionResult Delete(Movie recordToDelete) // Process the deletion
+        {
+            _context.Movies.Remove(recordToDelete);
+            _context.SaveChanges();
+            return RedirectToAction("ViewMovies");
+
+        }
     }
 }
